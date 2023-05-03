@@ -8,7 +8,7 @@ class Movie {
     public $vote;
     public $oldFilm = true;
     
-    function __construct(string $title, int $release, string $duration, string $genre, float $vote ) {
+    function __construct(string $title, int $release, string $duration, array $genre, float $vote ) {
         $this->title = $title;
         $this->release = $release;
         $this->duration = $duration;
@@ -26,11 +26,11 @@ class Movie {
     }
 };
 
-$movie1 = new Movie("Le ali della libertà", 1994, "2h 22min", "Drammatico", 9.3);
+$movie1 = new Movie("Le ali della libertà", 1994, "2h 22min", ["Drammatico"], 9.3);
 
-$movie2 = new Movie("Il padrino", 1972, "2h 55min", "Poliziesco", 9.2);
+$movie2 = new Movie("Il padrino", 1972, "2h 55min", ["Poliziesco", "Drammatico"], 9.2);
 
-$movie3 = new Movie("Il cavaliere oscuro", 2008, "2h 32min", "Azione", 9.0);
+$movie3 = new Movie("Il cavaliere oscuro", 2008, "2h 32min", ["Azione", "Poliziesco", "Drammatico"], 9.0);
 
 var_dump($movie1, $movie2, $movie3);
 

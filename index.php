@@ -1,38 +1,13 @@
 <?php 
 
-class Movie {
-    public $title;
-    public $release;
-    public $duration;
-    public $genre;
-    public $vote;
-    public $oldFilm = true;
-    
-    function __construct(string $title, int $release, string $duration, array $genre, float $vote ) {
-        $this->title = $title;
-        $this->release = $release;
-        $this->duration = $duration;
-        $this->genre = $genre;
-        $this->vote = $vote;
+require_once './Models/db.php';
 
 
-        $this->setOld($release);
-    }
-    
-    public function setOld($release){
-        if($release > 2000){
-            $this->oldFilm = false;
-        }
-    }
-};
+$movies[] = $movie1;
+$movies[] = $movie2;
+$movies[] = $movie3;
 
-$movie1 = new Movie("Le ali della libertà", 1994, "2h 22min", ["Drammatico"], 9.3);
 
-$movie2 = new Movie("Il padrino", 1972, "2h 55min", ["Poliziesco", "Drammatico"], 9.2);
-
-$movie3 = new Movie("Il cavaliere oscuro", 2008, "2h 32min", ["Azione", "Poliziesco", "Drammatico"], 9.0);
-
-var_dump($movie1, $movie2, $movie3);
 
 ?>
 
@@ -49,11 +24,62 @@ var_dump($movie1, $movie2, $movie3);
 </head>
 <body>
 
+    <?php
+    include './Views/partials/header.php';
+    ?>
+
+
     <div class="container text-center">
-        <h1>Film</h1>
+        <h1 class="mb-3">Film</h1>
+
+        <h2 class="mb-3">
+            Migliori film del 900
+        </h2>
+
+
+        <table class="table text-center mb-3">
+            <thead>
+                <tr>
+                  <th scope="col">Title</th>
+                  <th scope="col">Uscita</th>
+                  <th scope="col">Durata</th>
+                  <th scope="col">Genere</th>
+                  <th scope="col">Voto</th>
+                  <th scope="col">Film 900</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <?php 
+
+                    foreach($movies as $singleMovie) {
+                    ?>
+                    <tr>
+                        <td><?php echo $singleMovie->title ?></td>
+                        <td><?php echo $singleMovie->release ?></td>
+                        <td><?php echo $singleMovie->duration ?></td>
+                        <td><?php foreach($singleMovie->genre as $result) {
+                            foreach($result as $singlegenre){
+                                echo $singlegenre . ', ';
+                            };
+                        }
+                        ?>
+                        </td>
+                        <td><?php echo $singleMovie->vote ?></td>
+                        <td><?php echo $singleMovie->oldFilm?></td>
+                    </tr>
+                    <?php
+                }
+                ?>
+            </tbody>
+        </table>
 
 
     </div>
+
+    <?php
+    include './Views/partials/footer.php';
+    ?>
    
     <!-- bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>

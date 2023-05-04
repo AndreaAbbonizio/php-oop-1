@@ -66,7 +66,12 @@ $movies[] = $movie3;
                         ?>
                         </td>
                         <td><?php echo $singleMovie->vote ?></td>
-                        <td><?php echo $singleMovie->oldFilm?></td>
+                        <td><?php if($singleMovie->release > 2000) {
+                            echo 'No';
+                        }else{
+                            echo 'Si';
+                        } 
+                        ?></td>
                     </tr>
                     <?php
                 }
